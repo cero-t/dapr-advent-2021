@@ -21,5 +21,7 @@
         <module>hello</module>
         <module>remote_call</module>
         <module>state</module>
+        <module>publish</module>
+        <module>subscribe</module>
     </modules>
 </project>
