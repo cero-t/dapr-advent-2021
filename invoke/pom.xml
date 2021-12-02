@@ -9,10 +9,10 @@
         <relativePath/>
     </parent>
     <groupId>ninja.cero.examples.dapr.advent</groupId>
-    <artifactId>remote_call</artifactId>
+    <artifactId>invoke</artifactId>
     <version>1.0.0</version>
-    <name>remote_call</name>
-    <description>Remote service call</description>
+    <name>invoke</name>
+    <description>Invoke remote service</description>
     <properties>
         <java.version>11</java.version>
     </properties>

@@ -1,4 +1,4 @@
-package ninja.cero.examples.dapr.advent.remote_call;
+package ninja.cero.examples.dapr.advent.invoke;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,18 +8,18 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Map;
 
 @RestController
-public class RemoteCallController {
+public class InvokeController {
     private RestTemplate restTemplate;
 
     @Value("${baseUrl}")
     private String baseUrl;
 
-    public RemoteCallController(RestTemplate restTemplate) {
+    public InvokeController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    @GetMapping("/remote_call")
-    public Map<String, ?> hello() {
+    @GetMapping("/invokeHello")
+    public Map<String, ?> invokeHello() {
         Map<?, ?> result = restTemplate.getForObject(baseUrl + "/hello", Map.class);
         return Map.of("baseUrl", baseUrl, "remoteMessage", result);
     }
