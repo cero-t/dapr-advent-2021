@@ -1,0 +1,18 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: twitter-binding
+spec:
+  type: bindings.twitter
+  version: v1
+  metadata:
+  - name: consumerKey
+    value: "5GHnOG26vb2Fx3qFX3RwfUxgh"
+  - name: consumerSecret
+    value: "01Q7bN4TEo1Rr1JGHtKhzaUcSOdkHQTll7yc0dbDMRfnIrZuSD"
+  - name: accessToken
+    value: "14663651-SteTYiBd7JuRCtY7p3JEksAaXUXRpjkoGPg4q8SEW"
+  - name: accessSecret
+    value: "6M618NhS9spvqh8HYIQv1xSJG9KvoSroSL6KaX4U55xnE"
+  - name: query
+    value: "@cero_t"
