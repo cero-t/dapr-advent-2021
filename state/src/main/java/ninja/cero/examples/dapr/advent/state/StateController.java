@@ -12,8 +12,8 @@ import java.util.Map;
 public class StateController {
     private RestTemplate restTemplate;
 
-    @Value("http://localhost:${DAPR_HTTP_PORT}/v1.0/state")
-    private String baseUrl;
+    @Value("http://localhost:${DAPR_HTTP_PORT}/v1.0/state/statestore")
+    private String stateUrl;
 
     public StateController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -21,11 +21,11 @@ public class StateController {
 
     @PostMapping("/write")
     public void write(@RequestBody Object message) {
-        restTemplate.postForObject(baseUrl + "/statestore", message, Void.class);
+        restTemplate.postForObject(stateUrl, message, Void.class);
     }
 
     @GetMapping("/read/{key}")
     public Object read(@PathVariable String key) {
-        return restTemplate.getForObject(baseUrl + "/statestore" + "/" + key, Object.class);
+        return restTemplate.getForObject(stateUrl + "/" + key, Object.class);
     }
 }
