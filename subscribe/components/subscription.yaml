@@ -1,0 +1,10 @@
+apiVersion: dapr.io/v1alpha1
+kind: Subscription
+metadata:
+  name: subscription
+spec:
+  topic: my-message
+  route: /subscribe
+  pubsubname: rabbitmq-pubsub
+scopes:
+  - subscribe-app
