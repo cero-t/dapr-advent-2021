@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SubscribeController {
     @PostMapping("/subscribe")
-    public void subscribe(@RequestBody Object message) {
+    public void subscribe(@RequestBody String message) {
         System.out.println(message);
     }
 }
