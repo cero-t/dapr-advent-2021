@@ -3,7 +3,7 @@ kind: Subscription
 metadata:
   name: subscription
 spec:
-  pubsubname: rabbitmq-pubsub
+  pubsubname: pubsub
   topic: my-message
   route: /subscribe
 scopes:
