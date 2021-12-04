@@ -21,5 +21,6 @@
         <module>hello</module>
         <module>invoke</module>
         <module>state</module>
+        <module>secrets</module>
     </modules>
 </project>
