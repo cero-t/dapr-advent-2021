@@ -23,5 +23,6 @@
         <module>state</module>
         <module>publish</module>
         <module>subscribe</module>
+        <module>oauth</module>
     </modules>
 </project>
