@@ -16,3 +16,5 @@ spec:
     value: "***"
   - name: query
     value: "@cero_t"
+  - name: route
+    value: /receive

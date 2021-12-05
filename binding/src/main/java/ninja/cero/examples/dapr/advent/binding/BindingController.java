@@ -1,9 +1,7 @@
 package ninja.cero.examples.dapr.advent.binding;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -11,14 +9,20 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-public class SearchController {
+public class BindingController {
     private RestTemplate restTemplate;
 
     @Value("http://localhost:${DAPR_HTTP_PORT}/v1.0/bindings/twitter-binding")
     private String bindingUrl;
 
-    public SearchController(RestTemplate restTemplate) {
+    public BindingController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
+    }
+
+    @PostMapping("/receive")
+    public void receive(@RequestBody Map<String, ?> message) {
+        Map<String, String> tweet = extract(message);
+        System.out.println("@" + tweet.get("screen_name") + " : " + tweet.get("text"));
     }
 
     @GetMapping("/search")
