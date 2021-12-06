@@ -24,5 +24,6 @@
         <module>publish</module>
         <module>subscribe</module>
         <module>binding</module>
+        <module>secrets</module>
     </modules>
 </project>
