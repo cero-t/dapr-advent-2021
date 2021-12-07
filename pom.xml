@@ -25,5 +25,6 @@
         <module>subscribe</module>
         <module>binding</module>
         <module>secrets</module>
+        <module>tracing</module>
     </modules>
 </project>
