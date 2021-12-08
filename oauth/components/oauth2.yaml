@@ -16,6 +16,6 @@ spec:
   - name: tokenURL
     value: "https://github.com/login/oauth/access_token"
   - name: redirectURL
-    value: "http://localhost:18087"
+    value: "http://localhost:18088"
   - name: authHeaderName
     value: "x-oauth-token"
