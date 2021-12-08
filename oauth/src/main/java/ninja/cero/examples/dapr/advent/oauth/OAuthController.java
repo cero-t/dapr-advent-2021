@@ -31,7 +31,7 @@ public class OAuthController {
     }
 
     @GetMapping("/user")
-    public Object user(@RequestHeader("x-oauth-token") String oauthToken) {
+    public Map<?, ?> user(@RequestHeader("x-oauth-token") String oauthToken) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", oauthToken);
         HttpEntity<?> request = new HttpEntity<>(httpHeaders);
