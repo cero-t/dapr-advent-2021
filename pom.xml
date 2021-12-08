@@ -26,5 +26,6 @@
         <module>binding</module>
         <module>secrets</module>
         <module>tracing</module>
+        <module>oauth</module>
     </modules>
 </project>

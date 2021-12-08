@@ -1,0 +1,9 @@
+apiVersion: dapr.io/v1alpha1
+kind: Configuration
+metadata:
+  name: pipeline
+spec:
+  httpPipeline:
+    handlers:
+    - name: oauth2
+      type: middleware.http.oauth2
