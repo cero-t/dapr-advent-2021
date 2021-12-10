@@ -9,9 +9,9 @@
         <relativePath/>
     </parent>
     <groupId>ninja.cero.examples.dapr.advent</groupId>
-    <artifactId>sdk</artifactId>
+    <artifactId>java-sdk</artifactId>
     <version>1.0.0</version>
-    <name>sdk</name>
+    <name>java-sdk</name>
     <description>Java SDK</description>
     <properties>
         <java.version>11</java.version>
