@@ -1,0 +1,45 @@
+version: '3'
+services:
+  hello:
+    image: "hello:1.0.0"
+    depends_on:
+      - placement
+    networks:
+      - dapr-network
+  hello-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+      "-app-id", "hello-app",
+      "-app-port", "8080",
+      "-placement-host-address", "placement:50006"]
+    depends_on:
+      - hello
+    network_mode: "service:hello"
+  invoke:
+    image: "invoke:1.0.0"
+    environment:
+      baseUrl: http://localhost:3500/v1.0/invoke/hello-app/method
+    ports:
+      - "8081:8081"
+    depends_on:
+      - placement
+    networks:
+      - dapr-network
+  invoke-dapr:
+    image: "daprio/daprd:edge"
+    command: ["./daprd",
+      "-app-id", "invoke-app",
+      "-app-port", "8081",
+      "-placement-host-address", "placement:50006"]
+    depends_on:
+      - invoke
+    network_mode: "service:invoke"
+  placement:
+    image: "daprio/dapr"
+    command: ["./placement", "-port", "50006"]
+    ports:
+      - "50006:50006"
+    networks:
+      - dapr-network
+networks:
+    dapr-network:
