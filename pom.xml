@@ -27,5 +27,6 @@
         <module>secrets</module>
         <module>tracing</module>
         <module>oauth</module>
+        <module>sdk</module>
     </modules>
 </project>
