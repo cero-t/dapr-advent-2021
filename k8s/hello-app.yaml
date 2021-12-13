@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+  labels:
+    app: hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "hello-app"
+        dapr.io/app-port: "8080"
+    spec:
+      containers:
+      - name: hello
+        image: hello:1.0.0
+        ports:
+        - containerPort: 8080
+        imagePullPolicy: IfNotPresent
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: hello-svc
+  labels:
+    app: hello
+spec:
+  selector:
+    app: hello
+  ports:
+  - protocol: TCP
+    port: 8080
+    targetPort: 8080
+  type: LoadBalancer
