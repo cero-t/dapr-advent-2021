@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscribe-app
+  labels:
+    app: subscribe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscribe
+  template:
+    metadata:
+      labels:
+        app: subscribe
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "subscribe-app"
+        dapr.io/app-port: "8084"
+    spec:
+      containers:
+      - name: subscribe
+        image: subscribe:1.0.0
+        ports:
+        - containerPort: 8084
+        imagePullPolicy: IfNotPresent

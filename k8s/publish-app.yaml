@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: publish-app
+  labels:
+    app: publish
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: publish
+  template:
+    metadata:
+      labels:
+        app: publish
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "publish-app"
+        dapr.io/app-port: "8083"
+    spec:
+      containers:
+      - name: publish
+        image: publish:1.0.0
+        ports:
+        - containerPort: 8083
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: spring.profiles.active
+            value: rabbitmq
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: publish-svc
+  labels:
+    app: publish
+spec:
+  selector:
+    app: publish
+  ports:
+  - protocol: TCP
+    port: 8083
+    targetPort: 8083
+  type: LoadBalancer
