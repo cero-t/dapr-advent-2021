@@ -1,0 +1,13 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestore
+spec:
+  type: state.postgresql
+  version: v1
+  metadata:
+  - name: connectionString
+#    value: host=postgresql-svc user=postgres password=secretpassword port=5432 connect_timeout=10 database=postgres
+    secretKeyRef:
+      name: postgresql-secret
+      key: connection

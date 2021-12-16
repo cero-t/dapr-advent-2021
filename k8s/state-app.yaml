@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: state-app
+  labels:
+    app: state
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: state
+  template:
+    metadata:
+      labels:
+        app: state
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "state-app"
+        dapr.io/app-port: "8082"
+    spec:
+      containers:
+      - name: state
+        image: state:1.0.0
+        ports:
+        - containerPort: 8082
+        imagePullPolicy: IfNotPresent
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: state-svc
+  labels:
+    app: state
+spec:
+  selector:
+    app: state
+  ports:
+  - protocol: TCP
+    port: 8082
+    targetPort: 8082
+  type: LoadBalancer
