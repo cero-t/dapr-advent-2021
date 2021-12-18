@@ -17,6 +17,7 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "subscribe-app"
         dapr.io/app-port: "8084"
+        dapr.io/config: "tracing"
     spec:
       containers:
       - name: subscribe

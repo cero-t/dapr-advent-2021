@@ -17,6 +17,7 @@ spec:
         dapr.io/enabled: "true"
         dapr.io/app-id: "publish-app"
         dapr.io/app-port: "8083"
+        dapr.io/config: "tracing"
     spec:
       containers:
       - name: publish

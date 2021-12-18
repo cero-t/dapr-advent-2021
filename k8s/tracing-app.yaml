@@ -1,43 +1,43 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-app
+  name: tracing-app
   labels:
-    app: hello
+    app: tracing
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello
+      app: tracing
   template:
     metadata:
       labels:
-        app: hello
+        app: tracing
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "hello-app"
-        dapr.io/app-port: "8080"
+        dapr.io/app-id: "tracing-app"
+        dapr.io/app-port: "8087"
         dapr.io/config: "tracing"
     spec:
       containers:
-      - name: hello
-        image: hello:1.0.0
+      - name: tracing
+        image: tracing:1.0.0
         ports:
-        - containerPort: 8080
+        - containerPort: 3500
         imagePullPolicy: IfNotPresent
 
 ---
 kind: Service
 apiVersion: v1
 metadata:
-  name: hello-svc
+  name: tracing-svc
   labels:
-    app: hello
+    app: tracing
 spec:
   selector:
-    app: hello
+    app: tracing
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 3500
+    targetPort: 3500
   type: LoadBalancer
