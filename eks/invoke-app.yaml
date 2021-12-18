@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: invoke-app
+  labels:
+    app: invoke
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: invoke
+  template:
+    metadata:
+      labels:
+        app: invoke
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "invoke-app"
+        dapr.io/app-port: "8081"
+    spec:
+      containers:
+      - name: invoke
+        image: ***.dkr.ecr.ap-northeast-1.amazonaws.com/invoke:1.0.0
+        ports:
+        - containerPort: 8081
+        imagePullPolicy: IfNotPresent
+        env:
+        - name: spring.profiles.active
+          value: dapr
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: invoke-svc
+  labels:
+    app: invoke
+spec:
+  selector:
+    app: invoke
+  ports:
+  - protocol: TCP
+    port: 8081
+    targetPort: 8081
+  type: NodePort
