@@ -7,3 +7,5 @@ spec:
     component: "consul"
     configuration:
       selfRegister: true
+      client:
+        address: "172.*.*.*:8500"
